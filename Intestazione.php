@@ -11,7 +11,7 @@
             <div class='menu-button'></div>
         </label>
             <ul class="menu">
-                <li><a href="Index.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#info" >Contattami</a></li>
                 <li><a href="Projects.php" >Progetti</a></li>
             </ul>
