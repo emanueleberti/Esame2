@@ -46,9 +46,9 @@
         </div>
     </section>
 
-    <footer>
-        <?php
-            require_once( 'Form.php' );
-        ?>
-    </footer>
+   
+    <?php
+        require_once( 'Form.php' );
+    ?>
+    
 </body>

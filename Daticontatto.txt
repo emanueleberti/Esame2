@@ -1,2 +1,37 @@
 Dati del form a
 
+Name: rgrt
+surname: rgr
+phone: 3353535
+email: qwe@abc
+
+Name: dwdw
+surname: wddw
+phone: 234432
+email: wef@abcde
+
+Name: dff
+surname: fdfd
+phone: 2442
+email: eer@dg
+
+Name: dff
+surname: fdfd
+phone: 2442
+email: eer@dg
+
+Name: adc
+surname: adc
+phone: 234234234
+email: abc@def
+
+Name: sdfv
+surname: asv
+phone: 3124234
+email: dfg@asv
+
+Name: dsc
+surname: sdcs
+phone: 23234
+email: wef@fe
+

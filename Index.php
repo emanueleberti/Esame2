@@ -47,8 +47,8 @@
 
         // Loop attraverso l'array per generare le immagini collegate
         foreach ($images as $image) {
-            echo '<a href="' . $image['link'] . '">';
-            echo '<img src="' . $image['src'] . '" alt="' . $image['alt'] . '" style="width: 100%;">';
+            echo '<a href="' . $image ['link'] . '">';
+            echo '<img src="' . $image ['src'] . '" alt="' . $image['alt'] . '" style="width: 100%;">';
             echo '</a>';
         }
       ?>
@@ -81,10 +81,9 @@
   </section>
   
   <!--Pagina finale-->
-  <footer>
-    <?php
-        require_once( 'Form.php' );
-    ?>
-  </footer>
+  <?php
+    require_once( 'Form.php' );
+  ?>
+  
 </body>
 </html>

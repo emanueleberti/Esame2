@@ -1,4 +1,4 @@
-  <!--Pagina finale-->
+
   <footer>
     <div class="container3">
       <div class="title3">
@@ -8,7 +8,7 @@
       </div>
       <!--Form-->
       <div class="form-section">
-        <form action="DatiForm.php" method="post">
+        <form action="Form.php" method="post">
           <label for="name">Nome:</label>
           <input type="text" id="name" name="name" required>
   
