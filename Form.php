@@ -1,5 +1,76 @@
 
   <footer>
+
+    <?php
+      // Definizione variabili per i campi del modulo
+      $nome = $cognome = $email = $telefono = "";
+      $errore_nome = $errore_cognome = $errore_email = $errore_telefono = "";
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          // Funzione di pulizia dei dati
+          function test_input($data) {
+              $data = trim($data);
+              $data = stripslashes($data);
+              $data = htmlspecialchars($data);
+              return $data;
+          }
+
+          // Verifica campo "nome"
+          if (empty($_POST["nome"])) {
+              $errore_nome = "Il campo nome è obbligatorio";
+          } else {
+              $nome = test_input($_POST["nome"]);
+              if (!preg_match("/^[a-zA-Z ]*$/", $nome)) {
+                  $errore_nome = "Sono consentite solo lettere e spazi nel campo nome";
+              }
+          }
+
+          // Verifica campo "cognome"
+          if (empty($_POST["cognome"])) {
+              $errore_cognome = "Il campo cognome è obbligatorio";
+          } else {
+              $cognome = test_input($_POST["cognome"]);
+              if (!preg_match("/^[a-zA-Z ]*$/", $cognome)) {
+                  $errore_cognome = "Sono consentite solo lettere e spazi nel campo cognome";
+              }
+          }
+
+          // Verifica campo "email"
+          if (empty($_POST["email"])) {
+              $errore_email = "Il campo email è obbligatorio";
+          } else {
+              $email = test_input($_POST["email"]);
+              if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                  $errore_email = "Formato email non valido";
+              }
+          }
+
+          // Verifica campo "telefono"
+          if (empty($_POST["telefono"])) {
+              $errore_telefono = "Il campo telefono è obbligatorio";
+          } else {
+              $telefono = test_input($_POST["telefono"]);
+              // Puoi aggiungere ulteriori regole di validazione per il campo telefono, se necessario
+          }
+
+          // Se non ci sono errori, salva i dati in un file di testo
+          if (empty($errore_nome) && empty($errore_cognome) && empty($errore_email) && empty($errore_telefono)) {
+              $dati_contatto = "Nome: $nome\nCognome: $cognome\nEmail: $email\nTelefono: $telefono\n";
+
+              // Scrivi i dati nel file
+              file_put_contents("Daticontatto.txt", $dati_contatto, FILE_APPEND | LOCK_EX);
+
+              // Reindirizza l'utente alla pagina di ringraziamento
+              header("Location: ringraziamento.php?nome=$nome&cognome=$cognome&email=$email&telefono=$telefono");
+              exit();
+          }
+      }
+      ?>
+
+
+
+  
+
     <div class="container3">
       <div class="title3">
         <!--Titolo-->
@@ -8,57 +79,29 @@
       </div>
       <!--Form-->
       <div class="form-section">
-        <form action="Form.php" method="post">
-          <label for="name">Nome:</label>
-          <input type="text" id="name" name="name" required>
-  
-          <label for="surname">Cognome:</label>
-          <input type="text" id="surname" name="surname" required>
-  
-          <label for="phone">Telefono:</label>
-          <input type="tel" id="phone" name="phone">
-  
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-  
-          <input type="submit" value="Invia">
-        </form >
+        <form id="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>#form">
+          Nome: <input type="text" name="nome" value="<?php echo htmlspecialchars($nome); ?>">
+          <span class="errore"><?php echo isset($errore_nome) ? $errore_nome : ""; ?></span>
+         
+
+          Cognome: <input type="text" name="cognome" value="<?php echo htmlspecialchars($cognome); ?>">
+          <span class="errore"><?php echo isset($errore_cognome) ? $errore_cognome : ""; ?></span>
+          
+
+          Email: <input type="text" name="email" value="<?php echo htmlspecialchars($email); ?>">
+          <span class="errore"><?php echo isset($errore_email) ? $errore_email : ""; ?></span>
+          
+
+          Telefono: <input type="text" name="telefono" value="<?php echo htmlspecialchars($telefono); ?>">
+          <span class="errore"><?php echo isset($errore_telefono) ? $errore_telefono : ""; ?></span>
+          
+
+          <input type="submit" name="submit" value="Invia">
+        </form>
       </div>
     </div>
-    <!--Fine pagina-->
-    <div class="container4">
-      <!--Logo-->
-      <div class="image-container4">
-        <img src="IMMAGINI/LOGO.png" alt="Logo">
-      </div>
-    </div>
+
+   
+    
   </footer>
-</body>
-</html>
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recupera i dati inviati dal form
-    $name = $_POST["name"];
-    $surname = $_POST["surname"];
-    $phone = $_POST["phone"];
-    $email = $_POST["email"];
 
-    // Crea una stringa con i dati formattati
-    $dati_formattati = "Name: $name\nsurname: $surname\nphone: $phone\nemail: $email\n\n";
-
-    // Specifica il percorso del file in cui salvare i dati
-    $percorso_file = "Daticontatto.txt";
-
-    // Apre o crea il file in modalità append
-    $file = fopen($percorso_file, "a");
-
-    // Scrive i dati nel file
-    fwrite($file, $dati_formattati);
-
-    // Chiude il file
-    fclose($file);
-
-    // Reindirizza l'utente a una pagina di conferma o grazie
-    header("Location: conferma_invio.php");
-    exit();
-} 

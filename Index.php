@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="scss.css">
-
+    <style>
+      .errore{color:red;}
+    </style>
     <title>Index</title>
 </head>
 
@@ -82,7 +84,7 @@
   
   <!--Pagina finale-->
   <?php
-    require_once( 'Form.php' );
+    require_once( 'form.php' );
   ?>
   
 </body>
