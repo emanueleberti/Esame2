@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "src": "IMMAGINI/01.jpg",
+        "alt": "Descrizione immagine 1",
+        "link": "progetto.php",
+        "title": "TITOLO",
+        "subtitle": "SITO WEB",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatum adipisci harum repudiandae deleniti in laboriosam ducimus debitis voluptatibus. Accusantium, tempora? Aliquid voluptatibus modi inventore nihil, ullam fugit asperiores repudiandae!"
+    },
+    {
+        "id": 2,
+        "src": "IMMAGINI/02.jpg",
+        "alt": "Descrizione immagine 2",
+        "link": "progetto.php",
+        "title": "TITOLO",
+        "subtitle": "SITO WEB",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatum adipisci harum repudiandae deleniti in laboriosam ducimus debitis voluptatibus. Accusantium, tempora? Aliquid voluptatibus modi inventore nihil, ullam fugit asperiores repudiandae!"
+    },
+    {
+        "id": 3,
+        "src": "IMMAGINI/03.jpg",
+        "alt": "Descrizione immagine 3",
+        "link": "progetto.php",
+        "title": "TITOLO",
+        "subtitle": "SITO WEB",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatum adipisci harum repudiandae deleniti in laboriosam ducimus debitis voluptatibus. Accusantium, tempora? Aliquid voluptatibus modi inventore nihil, ullam fugit asperiores repudiandae!"
+    },
+    {
+        "id": 4,
+        "src": "IMMAGINI/04.jpg",
+        "alt": "Descrizione immagine 4",
+        "link": "progetto.php",
+        "title": "TITOLO",
+        "subtitle": "SITO WEB",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam voluptatum adipisci harum repudiandae deleniti in laboriosam ducimus debitis voluptatibus. Accusantium, tempora? Aliquid voluptatibus modi inventore nihil, ullam fugit asperiores repudiandae!"
+    }
+]

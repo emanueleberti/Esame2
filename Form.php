@@ -1,10 +1,10 @@
 
-  <footer>
-
+<footer>
     <?php
       // Definizione variabili per i campi del modulo
       $nome = $cognome = $email = $telefono = "";
       $errore_nome = $errore_cognome = $errore_email = $errore_telefono = "";
+      $inviato = "";
 
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
           // Funzione di pulizia dei dati
@@ -50,7 +50,6 @@
               $errore_telefono = "Il campo telefono è obbligatorio";
           } else {
               $telefono = test_input($_POST["telefono"]);
-              // Puoi aggiungere ulteriori regole di validazione per il campo telefono, se necessario
           }
 
           // Se non ci sono errori, salva i dati in un file di testo
@@ -60,11 +59,9 @@
               // Scrivi i dati nel file
               file_put_contents("Daticontatto.txt", $dati_contatto, FILE_APPEND | LOCK_EX);
 
-              // Reindirizza l'utente alla pagina di ringraziamento
-              header("Location: ringraziamento.php?nome=$nome&cognome=$cognome&email=$email&telefono=$telefono");
-              exit();
+              $inviato = "Dati inviati con successo!";
           }
-      }
+        }
       ?>
 
 
@@ -97,11 +94,22 @@
           
 
           <input type="submit" name="submit" value="Invia">
+            <?php
+                if (!empty($inviato)) {
+                    echo "<p class='inviato'>$inviato</p>";
+                }
+            ?>
         </form>
       </div>
     </div>
-
+    <!--Fine pagina-->
+    <div class="container4">
+      <!--Logo-->
+      <div class="image-container4">
+        <img src="IMMAGINI/LOGO.png" alt="Logo">
+      </div>
+    </div>
    
     
-  </footer>
+</footer>
 

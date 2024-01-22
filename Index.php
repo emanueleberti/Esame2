@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="scss.css">
-    <style>
-      .errore{color:red;}
-    </style>
-    <title>Index</title>
+    <title>index</title>
 </head>
 
 <body>
   
 <!--Intestazione-->
   <?php
-    require_once( 'Intestazione.php' );
+    require_once( 'intestazione.php' );
   ?>
 
 
@@ -34,25 +31,34 @@
   <!--Seconda pagina-->
   <section>
     <!--Titolo seconda pagina-->
-    <a href="Projects.php" class="pulsante-link"> <b>I MIEI PROGETTI</b></a>
+    <a href="projects.php" class="pulsante-link"> <b>I MIEI PROGETTI</b></a>
     <!-- Contenitore delle immagini -->
     <div class="image-grid">
 
-      <?php
-        // Array contenente informazioni sull'immagine e la pagina di destinazione
-        $images = [
-            ['src' => 'IMMAGINI/01.jpg', 'alt' => 'Descrizione immagine 1', 'link' => 'Project01.php'],
-            ['src' => 'IMMAGINI/02.jpg', 'alt' => 'Descrizione immagine 2', 'link' => 'Project02.php'],
-            ['src' => 'IMMAGINI/03.jpg', 'alt' => 'Descrizione immagine 3', 'link' => 'Project03.php'],
-            ['src' => 'IMMAGINI/04.jpg', 'alt' => 'Descrizione immagine 4', 'link' => 'Project04.php'],
-        ];
+      <?php 
+        // Leggi il contenuto del file JSON
+        $fileJSON = 'images.json';
+        $datiJSON = file_get_contents($fileJSON);
+        $immagini = json_decode($datiJSON, true);
 
-        // Loop attraverso l'array per generare le immagini collegate
-        foreach ($images as $image) {
-            echo '<a href="' . $image ['link'] . '">';
-            echo '<img src="' . $image ['src'] . '" alt="' . $image['alt'] . '" style="width: 100%;">';
-            echo '</a>';
-        }
+        // Verifica se la decodifica è avvenuta con successo
+        if ($immagini === null) {
+            echo '<p class="errore">Errore nella lettura del file JSON</p>';
+        } else {
+            // Rimuovi due immagini specifiche dall'array
+            unset($immagini[2]);
+            unset($immagini[1]);
+
+            // Reindicizza l'array per evitare buchi nell'indice
+            $immagini = array_values($immagini);
+
+            // Attraversa l'array per generare dinamicamente le immagini
+            foreach ($immagini as $immagine) {
+                echo '<a href="' . $immagine['link'].'?id='.$immagine["id"] . '">';
+                echo '<img src="' . $immagine['src'] . '" alt="' . $immagine['alt'] . '" style="width: 100%;">';
+                echo '</a>';
+            }
+        } 
       ?>
     </div>
   </section>
@@ -84,7 +90,7 @@
   
   <!--Pagina finale-->
   <?php
-    require_once( 'form.php' );
+    require_once( 'form.php' ); 
   ?>
   
 </body>

@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="scss.css">
-
   <title>Projects</title>
 </head>
 <body>
     
     <!--Intestazione-->
     <?php
-        require_once( 'Intestazione.php' );
+        require_once( 'intestazione.php' );
     ?>
     
     <!--Immagine e titolo-->
@@ -28,19 +27,21 @@
         <div class="image-grid">
 
         <?php
-            // EArray contenente informazioni sull'immagine e la pagina di destinazione
-            $images = [
-                ['src' => 'IMMAGINI/01.jpg', 'alt' => 'Descrizione immagine 1', 'link' => 'Project01.php'],
-                ['src' => 'IMMAGINI/02.jpg', 'alt' => 'Descrizione immagine 2', 'link' => 'Project02.php'],
-                ['src' => 'IMMAGINI/03.jpg', 'alt' => 'Descrizione immagine 3', 'link' => 'Project03.php'],
-                ['src' => 'IMMAGINI/04.jpg', 'alt' => 'Descrizione immagine 4', 'link' => 'Project04.php'],
-            ];
+            // Leggi il contenuto del file JSON
+            $fileJSON = 'images.json';
+            $datiJSON = file_get_contents($fileJSON);
+            $immagini = json_decode($datiJSON, true);
 
-            // Loop attraverso l'array per generare le immagini collegate
-            foreach ($images as $image) {
-                echo '<a href="' . $image['link'] . '">';
-                echo '<img src="' . $image['src'] . '" alt="' . $image['alt'] . '" style="width: 100%;">';
-                echo '</a>';
+            // Verifica se la decodifica è avvenuta con successo
+            if ($immagini === null) {
+                echo '<p class="errore">Errore nella lettura del file JSON</p>';
+            } else {
+                // Attraversa l'array per generare dinamicamente le immagini
+                foreach ($immagini as $immagine) {
+                    echo '<a href="' . $immagine['link'].'?id='.$immagine["id"] . '">';
+                    echo '<img src="' . $immagine['src'] . '" alt="' . $immagine['alt'] . '" style="width: 100%;">';
+                    echo '</a>';
+                }
             }
         ?>
         </div>
@@ -48,7 +49,7 @@
 
    
     <?php
-        require_once( 'Form.php' );
+        require_once( 'form.php' );
     ?>
     
 </body>

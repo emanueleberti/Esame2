@@ -7,13 +7,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  * {
+}
+* {
     font-family: "Raleway";
     text-decoration: none;
-    }
+}
 
-
+.errore{color:red;}
 
 /*Prima pagina*/
 .main-content {
@@ -280,6 +280,11 @@ input[type=submit] {
         @include hover-scale;
     }
 }
+.inviato {
+    color: $primary-color;
+    text-align: center;
+}
+
 /*Fine pagina*/
 .container4 {
     position: relative;
